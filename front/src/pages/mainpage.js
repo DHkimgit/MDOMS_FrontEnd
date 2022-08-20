@@ -1,13 +1,14 @@
 import React, { useEffect } from 'react'
 import { useRecoilState, useRecoilValue } from 'recoil';
 import TopNav from '../Components/TopNav'
-import { accessTokenAtom } from '../recoil/auth';
+import { accessTokenAtom, affiliatedUnitAtom } from '../recoil/auth';
 import axios from 'axios';
 import userServiceNumberAtom from '../recoil/auth/atom';
 
 function MainPage() {
     const accessToken = useRecoilValue(accessTokenAtom);
     const [ServiceNumber, setUserServiceNumber] = useRecoilState(userServiceNumberAtom);
+    const [userAffiliatedUnit, setUserAffiliatedUnit] = useRecoilState(affiliatedUnitAtom);
     useEffect(() => {
         if (accessToken) {
             axios.get("https://mdoms-backend.run.goorm.io/auth/users/me/", {
@@ -17,6 +18,7 @@ function MainPage() {
             })
             .then(result => {
                 setUserServiceNumber(result.data.ServiceNumber);
+                setUserAffiliatedUnit(result.data.AffiliatedUnit);
             })
         }
     })
