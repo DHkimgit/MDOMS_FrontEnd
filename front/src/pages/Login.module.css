@@ -1,0 +1,47 @@
+
+
+.userinputwrp {
+	position: relative;
+	width: 332px;
+    height: 55px;
+    background: #C8D4E6;
+    border-radius: 3px 3px 0px 0px;
+    margin: auto;
+}
+.userinputwrp .inputText{
+	width: 332px;
+    background: #C8D4E6;
+	outline: none;
+	border:none;
+    height: 30px;
+    font-family: 'Noto Sans KR';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 15px;
+    padding-bottom: 5px;
+	border-bottom: 1px solid #777;
+ 	box-shadow: none !important;
+    padding-left: 14px;
+}
+.userinputwrp .inputText:focus{
+	border-bottom: 3px solid #1E293B;
+}
+.userinputwrp .floatinglabel {
+	position: absolute;
+	pointer-events: none;
+	top: 18px;
+	left: 14px;
+	transition: 0.2s ease all;
+    font-family: 'Noto Sans KR';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    color: #3A4241
+}
+.userinputwrp input:focus ~ .floatinglabel,
+.userinputwrp input:not(:focus):valid ~ .floatinglabel{
+	top: 5px;
+	left: 14px;
+	font-size: 12px;
+	opacity: 1;
+}
