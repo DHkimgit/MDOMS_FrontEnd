@@ -6,10 +6,15 @@ import axios from 'axios';
 import userServiceNumberAtom from '../recoil/auth/atom';
 
 function MainPage() {
-    const accessToken = useRecoilValue(accessTokenAtom);
+    const [accessToken, setAccessToken] = useRecoilState(accessTokenAtom);
     const [ServiceNumber, setUserServiceNumber] = useRecoilState(userServiceNumberAtom);
     const [userAffiliatedUnit, setUserAffiliatedUnit] = useRecoilState(affiliatedUnitAtom);
     useEffect(() => {
+        const token = localStorage.getItem('user');
+        const token_request = JSON.parse(token);
+        if (token_request) {
+            setAccessToken(token_request);
+        }
         if (accessToken) {
             axios.get("https://mdoms-backend.run.goorm.io/auth/users/me/", {
                 headers: {

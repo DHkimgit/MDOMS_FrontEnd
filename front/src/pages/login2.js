@@ -7,10 +7,23 @@ import { useNavigate } from 'react-router-dom';
 import Logo from '../assets/image/logo.png'
 import "@fontsource/noto-sans-kr";
 import styled from 'styled-components';
+//https://www.npmjs.com/package/@fontsource/noto-sans-kr
+
+const Background = styled.div`
+    background-color: #F5F5F5;
+    height: 100vh;
+    display: flex;
+`
+const LoginBox = styled.div`
+    background-color: #50627F;
+    width: 404px;
+    
+    `
+
 
 var stringify = require('qs-stringify');
 
-function LoginForm() {
+function LoginForm2() {
     const [userServiceNumber, setUserServiceNumber] = useRecoilState(userServiceNumberAtom);
     const [userAffiliatedUnit, setUserAffiliatedUnit] = useRecoilState(affiliatedUnitAtom);
     const [accessToken, setAcessToken] = useRecoilState(accessTokenAtom);
@@ -99,7 +112,7 @@ function LoginForm() {
     }
 
     return (
-        <div class = 'bg-slate-200 h-screen flex'>
+        <Background>
             <div class='w-96 bg-white container mx-auto my-auto shadow-xl'>
                 <div class='flex justify-center items-center pt-2'>
                     <img src={Logo} width='60' height='82.5' alt="logo" />
@@ -139,8 +152,8 @@ function LoginForm() {
                 </div>
                 }               
             </div>
-        </div>
+        </Background>
     );
 }
 
-export default LoginForm;
+export default LoginForm2;
