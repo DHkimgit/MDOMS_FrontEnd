@@ -10,7 +10,6 @@ const Button = styled.button`
     border-radius: 6px;
     box-shadow: 0px 4px 5px rgba(0, 0, 0, 0.14), 0px 1px 10px rgba(0, 0, 0, 0.12), 0px 2px 4px rgba(0, 0, 0, 0.2);
     display: flex;
-    margin-top: 24px;
     justify-content: center;
     align-items: center;
     float: right;
@@ -30,13 +29,12 @@ const ButtonText = styled.div`
 
 `
 
-function LoginButton(props){
+function RegisterButton(props){
     return(
         <Button>
-            <ButtonText>Login</ButtonText>
-            <img src={Login}></img>
+            <ButtonText>Register</ButtonText>
         </Button>
     )
 }
 
-export default LoginButton;
+export default RegisterButton;
