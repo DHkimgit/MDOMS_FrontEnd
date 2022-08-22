@@ -31,7 +31,6 @@ const LogoBox = styled.div`
 const MainText = styled.div`
     font-size: 30px; /* 30px */
     color: rgb(241 245 249);
-    font-weight: 700;
     font-family: "Noto Sans KR";
     font-weight: 700;
     justify-content: center;
