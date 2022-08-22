@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import Logo from '../assets/image/logo.png'
 import "@fontsource/noto-sans-kr";
 import styled from 'styled-components';
-import styles from './Login.module.css';
+import InputBar from '../Components/InputBar';
 //https://www.npmjs.com/package/@fontsource/noto-sans-kr
 
 const Background = styled.div`
@@ -20,7 +20,20 @@ const LoginBox = styled.div`
     width: 404px;
     height: 424px;
     margin: auto;
+    display: flex;
+    flex-direction: column;
     `
+const LoginTopBox = styled.div`
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding-top: 40px;
+`
+const LogoBox = styled.div`
+    width: 65px;
+`
+
 const MainText = styled.div`
     font-family: 'Noto Sans KR';
     font-style: normal;
@@ -29,7 +42,18 @@ const MainText = styled.div`
     line-height: 43px;
     align-items: center;
     color: #F1F5F9;
-    margin: auto;
+`
+const InputText = styled.div`
+    font-family: 'Noto Sans KR';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 17px;
+    padding-bottom: 5px;
+    padding-left: 36px;
+    color: #F1F5F9;
+`
+const InputBox = styled.div`
+    padding-top: 15px;
 `
 
 var stringify = require('qs-stringify');
@@ -70,6 +94,7 @@ function LoginForm2() {
           ...insertValue,
           [name]: value
         });
+        console.log(event.target.value)
       };
     
     const params = stringify({
@@ -125,19 +150,20 @@ function LoginForm2() {
     return (
         <Background>
             <LoginBox>
-                <MainText>
-                    IWTGH
-                </MainText>
-                <div className={styles.userinputwrp}>
-                    <br/>
-                    <input type="text" className={styles.inputText} required/>
-                    <span className={styles.floatinglabel}>ServiceNumber</span>
-                </div>
-                <div className={styles.userinputwrp}>
-                    <br/>
-                    <input type="text" className={styles.inputText} required/>
-                    <span className={styles.floatinglabel}>Password</span>
-                </div>
+                <LoginTopBox>
+                        <LogoBox>
+                            <img src={Logo} width='60' height='48' alt="logo" />
+                        </LogoBox>
+                        <MainText>IWTGH</MainText>
+                </LoginTopBox>
+                <InputBox>
+                    <InputText>군번</InputText>
+                    <InputBar placeholder={"ServiceNumber"} inputtype={"text"} name={'ServiceNumber'} value={ServiceNumber} onChange={onChangeinsertValue}/>
+                </InputBox>
+                <InputBox>
+                    <InputText>비밀번호</InputText>
+                    <InputBar placeholder={"Password"} inputtype={"password"} name={'Password'} value={Password} onChange={onChangeinsertValue}/>
+                </InputBox>
             </LoginBox>
         </Background>
     );
