@@ -102,7 +102,10 @@ function Register() {
     });
     const navigate = useNavigate();
     const {Name, ServiceNumber, Password, ConfirmPassword, Email, AffiliatedUnit} = insertValue;
-    
+    const [isChecked, setChecked] = useState(false);
+    const onChangeChecked = ({ target }) => {
+        target.checked ? setChecked(true) : setChecked(false);
+      }; 
     const onChangeinsertValue = (event) => {
         const {value, name} = event.target;
         setInsertValue({
@@ -117,7 +120,8 @@ function Register() {
         'ServiceNumber': ServiceNumber,
         'Email': Email,
         'Password': Password,
-        'AffiliatedUnit': AffiliatedUnit
+        'AffiliatedUnit': AffiliatedUnit,
+        'IsOfficer': isChecked
     });
     
     return (
@@ -151,7 +155,7 @@ function Register() {
                     <InputBar placeholder={"AffiliatedUnit"} inputtype={"text"} name={'AffiliatedUnit'} value={AffiliatedUnit} onChange={onChangeinsertValue}/>
                 </InputBox>
                 <InputText2>간부</InputText2>
-                <ToggleBox><Toggle/></ToggleBox>
+                <ToggleBox><Toggle name={'IsOfficer'} value={isChecked} onChange={onChangeChecked}/></ToggleBox>
                 <ToggleBox2><RegisterButton /></ToggleBox2>
                 <RegistBox>Login</RegistBox>
             </LoginBox>

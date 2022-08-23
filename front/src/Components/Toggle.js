@@ -2,10 +2,10 @@ import React from 'react';
 import './Toggle.module.css'
 import styled from 'styled-components';
 
-function Toggle(){
+function Toggle(props){
     return(
         <>
-            <input type="checkbox" id="switch"/><label for="switch">Toggle</label>
+            <input type="checkbox" id="switch" name={props.name} value={props.value} onChange={props.onChange}/><label for="switch">Toggle</label>
         </>
     )
 }
