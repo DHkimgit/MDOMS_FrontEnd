@@ -31,7 +31,7 @@ const ButtonText = styled.div`
 
 function RegisterButton(props){
     return(
-        <Button>
+        <Button onClick={props.onClick}>
             <ButtonText>Register</ButtonText>
         </Button>
     )

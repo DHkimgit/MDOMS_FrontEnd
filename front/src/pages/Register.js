@@ -123,6 +123,15 @@ function Register() {
         'AffiliatedUnit': AffiliatedUnit,
         'IsOfficer': isChecked
     });
+
+    async function Register(){
+        axios.post("https://mdoms-backend.run.goorm.io/user/", params)
+        .then(result => {
+            if (result.status === 200){
+                navigate('/auth');
+            }
+        })
+    }
     
     return (
         <Background>
@@ -156,7 +165,8 @@ function Register() {
                 </InputBox>
                 <InputText2>간부</InputText2>
                 <ToggleBox><Toggle name={'IsOfficer'} value={isChecked} onChange={onChangeChecked}/></ToggleBox>
-                <ToggleBox2><RegisterButton /></ToggleBox2>
+                <ToggleBox2><RegisterButton onClick={Register}/></ToggleBox2>
+                <button onClick={Register}>wewd</button>
                 <RegistBox>Login</RegistBox>
             </LoginBox>
         </Background>
