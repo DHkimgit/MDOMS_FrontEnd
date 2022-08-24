@@ -133,6 +133,10 @@ function Register() {
         })
     }
     
+    function params_debug(params){
+        console.log(params);
+    }
+
     return (
         <Background>
             <LoginBox>
@@ -157,7 +161,7 @@ function Register() {
                 </InputBox>
                 <InputBox>
                     <InputText>이메일</InputText>
-                    <InputBar placeholder={"Email"} inputtype={"text"} name={'Email'} value={Email} onChange={onChangeinsertValue}/>
+                    <InputBar placeholder={"Email"} inputtype={"email"} name={'Email'} value={Email} onChange={onChangeinsertValue}/>
                 </InputBox>
                 <InputBox>
                     <InputText>소속</InputText>
@@ -166,7 +170,7 @@ function Register() {
                 <InputText2>간부</InputText2>
                 <ToggleBox><Toggle name={'IsOfficer'} value={isChecked} onChange={onChangeChecked}/></ToggleBox>
                 <ToggleBox2><RegisterButton onClick={Register}/></ToggleBox2>
-                <button onClick={Register}>wewd</button>
+                <button onClick={params_debug(params)}>wewd</button>
                 <RegistBox>Login</RegistBox>
             </LoginBox>
         </Background>

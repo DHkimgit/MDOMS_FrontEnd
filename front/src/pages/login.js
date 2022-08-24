@@ -52,6 +52,10 @@ function LoginForm() {
         'username': ServiceNumber,
         'password': Password
     });
+
+    function params_debug(params){
+        console.log(params);
+    }
     
     async function Login(){
         axios.post("https://mdoms-backend.run.goorm.io/auth/login", params)
@@ -132,6 +136,9 @@ function LoginForm() {
                     {validData ? null : <div class='mb-2 text-left text-lg text-red-500 text-center font-extrabold'>잘못된 비밀번호</div>}
                     <button onClick={Login} class="py-2 px-4 pt-3 pb-3 w-full font-semibold rounded-lg shadow-md text-white bg-cyan-600 hover:bg-cyan-700 mb-3">
                         로그인
+                    </button>
+                    <button onClick={params_debug(params)} class="py-2 px-4 pt-3 pb-3 w-full font-semibold rounded-lg shadow-md text-white bg-cyan-600 hover:bg-cyan-700 mb-3">
+                        debug
                     </button>
                     <div class='pb-4 text-right underline'>
                         <Link to='/main'>회원가입</Link>
