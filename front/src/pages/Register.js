@@ -16,7 +16,7 @@ import RegisterButton from '../Components/Auth/RegisterButton';
 const Background = styled.div`
     background-color: #F5F5F5;
     height: 100vh;
-    display: flex;
+    display: flex;  
 `
 const LoginBox = styled.div`
     background-color: #50627F;
@@ -115,7 +115,7 @@ function Register() {
         console.log(event.target.value)
       };
     
-    const params = stringify({
+    const paramss = stringify({
         'UserName': Name,
         'ServiceNumber': ServiceNumber,
         'Email': Email,
@@ -125,7 +125,11 @@ function Register() {
     });
 
     async function Register(){
-        axios.post("https://mdoms-backend.run.goorm.io/user/", params)
+        await axios.post("https://mdoms-backend.run.goorm.io/user/", paramss, {
+            headers: {
+                "Content-Type": "multipart/form-data",
+            },
+          })
         .then(result => {
             if (result.status === 200){
                 navigate('/auth');
@@ -170,7 +174,7 @@ function Register() {
                 <InputText2>간부</InputText2>
                 <ToggleBox><Toggle name={'IsOfficer'} value={isChecked} onChange={onChangeChecked}/></ToggleBox>
                 <ToggleBox2><RegisterButton onClick={Register}/></ToggleBox2>
-                <button onClick={params_debug(params)}>wewd</button>
+                <button onClick={params_debug(paramss)}>wewd</button>
                 <RegistBox>Login</RegistBox>
             </LoginBox>
         </Background>
