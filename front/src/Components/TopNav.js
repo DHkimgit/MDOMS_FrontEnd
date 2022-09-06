@@ -52,6 +52,7 @@ const GridBox = styled.div`
     display: flex;
     align-items:center;
     margin-left: auto;
+    padding-right: 50px;
     width: 262px;
 `
 const SearchBar = styled.input`

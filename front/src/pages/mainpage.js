@@ -4,6 +4,13 @@ import TopNav from '../Components/TopNav'
 import { accessTokenAtom, affiliatedUnitAtom } from '../recoil/auth';
 import axios from 'axios';
 import userServiceNumberAtom from '../recoil/auth/atom';
+import SideBar from '../Components/SideBar';
+import styled from 'styled-components';
+
+const Maincontainer = styled.div`
+    display: flex;
+`
+
 
 function MainPage() {
     const [accessToken, setAccessToken] = useRecoilState(accessTokenAtom);
@@ -36,8 +43,12 @@ function MainPage() {
     return(
         <>
             <TopNav/>
-            <div>{ServiceNumber}</div>
-            <button onClick={Click_Debug}>확인</button>
+            <Maincontainer>
+                <SideBar />
+                <div>{ServiceNumber}</div>
+                <button onClick={Click_Debug}>확인</button>
+            </Maincontainer>
+
         </>
 
     )

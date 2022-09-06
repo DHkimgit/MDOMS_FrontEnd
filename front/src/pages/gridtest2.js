@@ -53,10 +53,10 @@ class MyComponent extends React.Component {
     render() {
       return (
         <>
-          <Grid ref={this.gridRef} data={this.state.userdata} columns={columns} />
+          <Grid ref={this.gridRef} data={this.state.userdata} columns={columns} draggable={true}/>
           <button onClick={this.handleAppendRow}>Append Row</button>
           <button onClick={this.handleModifiedRow}>Modified Row</button>
-        </>
+        </> 
       );
     }
   }

@@ -8,7 +8,7 @@ import Logo from '../assets/image/logo.png'
 import "@fontsource/noto-sans-kr";
 import styled from 'styled-components';
 import InputBar from '../Components/InputBar';
-import LoginButton from '../Components/Auth/LoginButton';
+import Login from '../assets/image/login.png'
 //https://www.npmjs.com/package/@fontsource/noto-sans-kr
 
 const Background = styled.div`
@@ -67,6 +67,32 @@ const RegistBox = styled.div`
     display: flex;
     padding-top: 30px;
     margin-left: 308px;
+`
+const Button = styled.button`
+    width: 96px;
+    height: 40px;
+    background: #C8D4E6;
+    border-radius: 6px;
+    box-shadow: 0px 4px 5px rgba(0, 0, 0, 0.14), 0px 1px 10px rgba(0, 0, 0, 0.12), 0px 2px 4px rgba(0, 0, 0, 0.2);
+    display: flex;
+    margin-top: 24px;
+    justify-content: center;
+    align-items: center;
+    float: right;
+    margin-left: 272px;
+    :hover{
+        background-color: #476592;
+        transition: opacity 1s;
+    }
+`
+const ButtonText = styled.div`
+    font-family: 'Noto Sans KR';
+    font-style: normal;
+    font-weight: 900;
+    font-size: 16px;
+    color: #3A4241;
+    padding-bottom: 3px;
+
 `
 
 var stringify = require('qs-stringify');
@@ -177,8 +203,11 @@ function LoginForm2() {
                     <InputText>비밀번호</InputText>
                     <InputBar placeholder={"Password"} inputtype={"password"} name={'Password'} value={Password} onChange={onChangeinsertValue}/>
                 </InputBox>
-                    <LoginButton />
-                    <RegistBox>Register</RegistBox>
+                <Button onClick={Login}>
+                    <ButtonText>Login</ButtonText>
+                    <img src={Login}></img>
+                </Button>
+                <RegistBox>Register</RegistBox>
             </LoginBox>
         </Background>
     );
