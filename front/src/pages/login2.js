@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react'
-import { useRecoilState } from 'recoil';
+import { useRecoilState, useSetRecoilState } from 'recoil';
 import userServiceNumberAtom, {loginStateAtom, accessTokenAtom, affiliatedUnitAtom} from '../recoil/auth';
 import axios from 'axios';
 import { Link } from 'react-router-dom'
@@ -8,7 +8,7 @@ import Logo from '../assets/image/logo.png'
 import "@fontsource/noto-sans-kr";
 import styled from 'styled-components';
 import InputBar from '../Components/InputBar';
-import Login from '../assets/image/login.png'
+import userNameAtom from '../recoil/auth/username';
 //https://www.npmjs.com/package/@fontsource/noto-sans-kr
 
 const Background = styled.div`
@@ -35,7 +35,6 @@ const LoginTopBox = styled.div`
 const LogoBox = styled.div`
     width: 65px;
 `
-
 const MainText = styled.div`
     font-family: 'Noto Sans KR';
     font-style: normal;
@@ -102,6 +101,7 @@ function LoginForm2() {
     const [userAffiliatedUnit, setUserAffiliatedUnit] = useRecoilState(affiliatedUnitAtom);
     const [accessToken, setAcessToken] = useRecoilState(accessTokenAtom);
     const [loginstate, setLoginState] = useRecoilState(loginStateAtom);
+    const [username, setUserName] = useRecoilState(userNameAtom);
     const [insertValue, setInsertValue] = useState({
         ServiceNumber: '',
         Password: '',
@@ -123,6 +123,7 @@ function LoginForm2() {
             .then(result => {
                 setUserServiceNumber(result.data.ServiceNumber);
                 setUserAffiliatedUnit(result.data.AffiliatedUnit);
+                setUserName(result.data.UserName);
             })
         }
     })

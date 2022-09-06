@@ -1,21 +1,22 @@
 import React, { useEffect } from 'react'
-import { useRecoilState, useRecoilValue } from 'recoil';
+import { useRecoilState, useSetRecoilState } from 'recoil';
 import TopNav from '../Components/TopNav'
 import { accessTokenAtom, affiliatedUnitAtom } from '../recoil/auth';
 import axios from 'axios';
 import userServiceNumberAtom from '../recoil/auth/atom';
 import SideBar from '../Components/SideBar';
 import styled from 'styled-components';
+import userNameAtom from '../recoil/auth/username';
 
 const Maincontainer = styled.div`
     display: flex;
 `
 
-
 function MainPage() {
     const [accessToken, setAccessToken] = useRecoilState(accessTokenAtom);
     const [ServiceNumber, setUserServiceNumber] = useRecoilState(userServiceNumberAtom);
     const [userAffiliatedUnit, setUserAffiliatedUnit] = useRecoilState(affiliatedUnitAtom);
+    const [username, setUserName] = useRecoilState(userNameAtom);
     useEffect(() => {
         const token = localStorage.getItem('user');
         const token_request = JSON.parse(token);
@@ -31,6 +32,7 @@ function MainPage() {
             .then(result => {
                 setUserServiceNumber(result.data.ServiceNumber);
                 setUserAffiliatedUnit(result.data.AffiliatedUnit);
+                setUserName(result.data.UserName);
             })
         }
     })
