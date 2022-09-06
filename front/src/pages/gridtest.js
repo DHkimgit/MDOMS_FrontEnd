@@ -2,78 +2,52 @@ import React, {useEffect, useState} from 'react'
 import 'tui-grid/dist/tui-grid.css';
 import Grid from '@toast-ui/react-grid';
 import axios from 'axios';
-import { useAsync } from 'react-async';
 
-
-const data = [
-    {username: '김두현', id: 1, name: 'Editor'},
-    {username: '김두현2', id: 2, name: 'Grid'},
-    {username: '김두현3', id: 3, name: 'Chart'}
-  ];
-  
 const columns = [
     {name: 'id', header: 'ID'},
-    {name: 'username', header: 'UserName'},
-    {name: 'servicenumber', header: 'ServiceNumber'},
-    {name: 'email', header: 'Email'},
-    {name: 'affiliatedunit', header: 'AffiliatedUnit'},
+    {name: 'username', header: 'UserName', editor: 'text'},
+    {name: 'servicenumber', header: 'ServiceNumber', editor: 'text'},
+    {name: 'email', header: 'Email', editor: 'text'},
+    {name: 'affiliatedunit', header: 'AffiliatedUnit', editor: 'text'},
   ];
 
-async function getUsers() {
-  const response = await axios.get(
-    'https://mdoms-backend.run.goorm.io/user/'
-  );
-  return response.data.data[0];
-}
-
+// https://react.vlpt.us/integrate-api/02-useReducer.html
 function GridTest() {
-    const [patchdata, setPatchData] = useState();
-    const [length, setLength] = useState();
-    const [userdata, setUserData] = useState();
-    const data = []
-
-    const fatchdata = async() => {
-      const response = await axios.get('https://mdoms-backend.run.goorm.io/user/')
-      return response.data.data[0]
+    const [userdata, setUserData] = useState([]);
+    const dataSource = {
+      withCredentials: false,
+      initialRequest: true,
+      api: {
+        readData: { url: 'https://mdoms-backend.run.goorm.io/user/grid', method: 'GET' }
+      }
+    };
+    const fatchdata = async () => {
+      try {
+        const response = await axios.get('https://mdoms-backend.run.goorm.io/user/grid');
+        setUserData(response.data);
+      }
+      catch (e) {
+        console.log(e);
+      }
     }
+    
     useEffect(() => {
-      setUserData = fatchdata();
+      fatchdata(userdata);
     }, [])
-    // useEffect(() => {
-    //   axios.get('https://mdoms-backend.run.goorm.io/user/')
-    //   .then(result => {
-    //     setPatchData(result.data.data[0])
-    //     setLength(result.data.data[0].length)
-    //   })
-    // }, []);
-    // for (let i = 0 ; i <= length; i++) {
-    //   let id = patchdata[i].id;
-    //   let username = patchdata[i].UserName;
-    //   let servicenumber = patchdata[i].ServiceNumber;
-    //   let email = patchdata[i].Email;
-    //   let affiliatedunit = patchdata[i].AffiliatedUnit;
-    //   let tmp = {
-    //     id: {id},
-    //     username: {username},
-    //     servicenumber: {servicenumber},
-    //     email: {email},
-    //     affiliatedunit: {affiliatedunit}
-    //   }
-    //   data.push(tmp)
-    // }
-    console.log(userdata)
-    console.log(userdata)
 
     return(
         <>
             <Grid
-            data={userdata}
+            data={dataSource}
             columns={columns}
             rowHeight={25}
             bodyHeight={100}
             heightResizable={true}
             rowHeaders={['rowNum']}
             draggable={true}
+            onSuccessResponse={data => {
+              console.log(data);
+            }}
             />
         </>
     )
