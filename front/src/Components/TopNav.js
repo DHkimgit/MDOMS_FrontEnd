@@ -83,7 +83,7 @@ function TopNav(){
                 <img src={Logo}/>
             </ImageBox>
             <TextBox>
-                <MainText>MDOMS</MainText>
+                <MainText>근무편성관리</MainText>
             </TextBox>
             <GridBox>
                 <SearchBar></SearchBar>
