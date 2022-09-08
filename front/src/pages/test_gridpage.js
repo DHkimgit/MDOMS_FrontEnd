@@ -8,6 +8,7 @@ import SideBar from '../Components/SideBar';
 import styled from 'styled-components';
 import userNameAtom from '../recoil/auth/username';
 import Timetable_test from './grid/gridtest_timetable';
+import sideBarStateAtom from '../recoil/auth/sidebarstate';
 
 const Maincontainer = styled.div`
     display: flex;
@@ -20,6 +21,8 @@ function GridTestPage() {
     const [ServiceNumber, setUserServiceNumber] = useRecoilState(userServiceNumberAtom);
     const [userAffiliatedUnit, setUserAffiliatedUnit] = useRecoilState(affiliatedUnitAtom);
     const [username, setUserName] = useRecoilState(userNameAtom);
+    const [sidebar, setSideBar] = useRecoilState(sideBarStateAtom);
+
     useEffect(() => {
         const token = localStorage.getItem('user');
         const token_request = JSON.parse(token);
@@ -49,7 +52,7 @@ function GridTestPage() {
         <>
             <TopNav/>
             <Maincontainer>
-                <SideBar />
+                {sidebar ? <SideBar/> : <div></div>}
                 <Timetablecontainer>
                     <Timetable_test />
                 </Timetablecontainer>

@@ -5,6 +5,8 @@ import Menu from '../assets/image/menu.png'
 import { Icon } from '@iconify/react';
 import styled from 'styled-components';
 import "@fontsource/noto-sans-kr";
+import { useRecoilState } from 'recoil';
+import sideBarStateAtom from '../recoil/auth/sidebarstate';
 
 
 const TopBox = styled.div`
@@ -25,7 +27,7 @@ const TextBox = styled.div`
     line-height: 72px;
     display: flex;
     `
-const LogoBox = styled.div`
+const LogoBox = styled.button`
     padding-right: 7px;
 `
 const MainText = styled.div`
@@ -74,11 +76,21 @@ const SearchBarButton = styled.button`
     border-radius: 0px 3px 3px 0px;
 `
 function TopNav(){
-    
+    const [sidebar, setSideBar] = useRecoilState(sideBarStateAtom);
+    const setSidebar = () => {
+        if (sidebar==true) {
+            setSideBar(false);
+            console.log(sidebar);
+        }
+        else {
+            setSideBar(true)
+            console.log(sidebar);
+        }
+    }
     return(
         <TopBox>
             <ImageBox>
-                <LogoBox><img src={Menu}/></LogoBox>
+                <LogoBox onClick={setSidebar}><img src={Menu}/></LogoBox>
                 
                 <img src={Logo}/>
             </ImageBox>
