@@ -9,6 +9,7 @@ import styled from 'styled-components';
 import userNameAtom from '../recoil/auth/username';
 import Timetable_test from './grid/gridtest_timetable';
 import sideBarStateAtom from '../recoil/auth/sidebarstate';
+import CustomTable from '../Components/Grid_custom/grid';
 
 const Maincontainer = styled.div`
     display: flex;
@@ -53,9 +54,10 @@ function GridTestPage() {
             <TopNav/>
             <Maincontainer>
                 {sidebar ? <SideBar/> : <div></div>}
-                <Timetablecontainer>
+                {/* <Timetablecontainer>
                     <Timetable_test />
-                </Timetablecontainer>
+                </Timetablecontainer> */}
+                <CustomTable></CustomTable>
             </Maincontainer>
         </>
 

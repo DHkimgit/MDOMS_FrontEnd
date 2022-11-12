@@ -6,11 +6,13 @@ import { affiliatedUnitAtom } from '../recoil/auth';
 import userNameAtom from '../recoil/auth/username';
 import Vector from '../assets/image/Vector2.png'
 import Vector2 from '../assets/image/Vector.png'
+import { useNavigate } from 'react-router-dom';
+import { Link } from "react-router-dom";
 
 const Sidebarbox = styled.div`
     background-color: #50627F;
     width: 221px;
-    height: 897px;
+    height: 866px;
     box-shadow: 0px 8px 10px rgba(0, 0, 0, 0.14), 0px 3px 1px rgba(0, 0, 0, 0.12), 0px 2px 2px rgba(0, 0, 0, 0.14);
 `
 const User = styled.div`
@@ -133,7 +135,8 @@ const Helpbox = styled.div`
     padding-top: 200px;
 `
 
-function NavButton({props}) {
+function NavButton({props, navigateto}) {
+    const navigate = useNavigate();
 
     return(
         <ButtonBox>

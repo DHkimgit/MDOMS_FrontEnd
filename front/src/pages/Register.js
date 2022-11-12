@@ -123,7 +123,7 @@ function Register() {
         'AffiliatedUnit': AffiliatedUnit,
         'IsOfficer': isChecked
     });
-
+    
     async function Register(){
         await axios.post("https://mdoms-backend.run.goorm.io/user/", paramss, {
             headers: {
@@ -140,7 +140,7 @@ function Register() {
     function params_debug(params){
         console.log(params);
     }
-
+    
     return (
         <Background>
             <LoginBox>

@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import { useRecoilState, useSetRecoilState } from 'recoil';
 import TopNav from '../Components/TopNav'
 import { accessTokenAtom, affiliatedUnitAtom } from '../recoil/auth';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import userServiceNumberAtom from '../recoil/auth/atom';
 import SideBar from '../Components/SideBar';
@@ -17,12 +18,18 @@ function MainPage() {
     const [ServiceNumber, setUserServiceNumber] = useRecoilState(userServiceNumberAtom);
     const [userAffiliatedUnit, setUserAffiliatedUnit] = useRecoilState(affiliatedUnitAtom);
     const [username, setUserName] = useRecoilState(userNameAtom);
+
+    const navigate = useNavigate();
+
     useEffect(() => {
         const token = localStorage.getItem('user');
         const token_request = JSON.parse(token);
         if (token_request) {
             setAccessToken(token_request);
         }
+        // else {
+        //     navigate('/auth2')
+        // }
         if (accessToken) {
             axios.get("https://mdoms-backend.run.goorm.io/auth/users/me/", {
                 headers: {
